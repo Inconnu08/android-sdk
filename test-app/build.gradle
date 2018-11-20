@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion compile_sdk_version
-    buildToolsVersion build_tools_version
 
     defaultConfig {
         minSdkVersion 14
@@ -32,40 +31,41 @@ android {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/NOTICE'
     }
+    buildToolsVersion '28.0.3'
 }
 
 dependencies {
     // Includes the Optimizely X Full Stack Java SDK, event handler, and user profile
-    compile (project(':android-sdk')) {
+    implementation (project(':android-sdk')) {
         exclude group: 'com.google.code.gson', module:'gson'
         exclude group: 'com.noveogroup.android', module:'android-logger'
     }
 
     // compile 'com.optimizely.ab:android-sdk:1.0.0'
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    compile 'com.android.support:design:24.2.1'
+    implementation 'com.android.support:appcompat-v7:24.2.1'
+    implementation 'com.android.support:design:24.2.1'
     // EXAMPLE REPLACE noveogroup android-looger with slf4j-android logger
     // https://mvnrepository.com/artifact/org.slf4j/slf4j-android
     compile group: 'org.slf4j', name: 'slf4j-android', version: '1.7.25'
     // EXAMPLE REPLACE gson json parsing with jackson-databind json parsing.
-    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.6'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.6'
 
-    testCompile "junit:junit:$junit_ver"
-    testCompile "org.mockito:mockito-core:$mockito_ver"
+    testImplementation "junit:junit:$junit_ver"
+    testImplementation "org.mockito:mockito-core:$mockito_ver"
     testCompile "com.noveogroup.android:android-logger:$android_logger_ver"
-    // testCompile 'com.optimizely.ab:android-sdk:1.0.0'
-    testCompile project(':android-sdk')
+    // testImplementation 'com.optimizely.ab:android-sdk:1.0.0'
+    testImplementation project(':android-sdk')
 
-    androidTestCompile("com.android.support.test:runner:$support_test_runner_ver")
-    androidTestCompile "com.android.support:support-annotations:24.2.1"
+    androidTestImplementation("com.android.support.test:runner:$support_test_runner_ver")
+    androidTestImplementation "com.android.support:support-annotations:24.2.1"
     // Set this dependency to use JUnit 4 rules
-    androidTestCompile "com.android.support.test:rules:$support_test_runner_ver"
+    androidTestImplementation "com.android.support.test:rules:$support_test_runner_ver"
     // Set this dependency to build and run Espresso tests
-    androidTestCompile "com.android.support.test.espresso:espresso-core:$espresso_ver"
-    androidTestCompile "org.mockito:mockito-core:$mockito_ver"
-    androidTestCompile "com.google.dexmaker:dexmaker:$dexmaker_ver"
-    androidTestCompile "com.google.dexmaker:dexmaker-mockito:$dexmaker_ver"
-    // androidTestCompile 'com.optimizely.ab:android-sdk:1.0.0'
-    androidTestCompile project(':android-sdk')
-    androidTestCompile project(path: ':shared')
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso_ver"
+    androidTestImplementation "org.mockito:mockito-core:$mockito_ver"
+    androidTestImplementation "com.google.dexmaker:dexmaker:$dexmaker_ver"
+    androidTestImplementation "com.google.dexmaker:dexmaker-mockito:$dexmaker_ver"
+    // androidTestImplementation 'com.optimizely.ab:android-sdk:1.0.0'
+    androidTestImplementation project(':android-sdk')
+    androidTestImplementation project(path: ':shared')
 }
