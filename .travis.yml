@@ -48,3 +48,16 @@ script:
   - ./gradlew testAllModulesTravis
   - if [[ -n $TRAVIS_TAG ]]; then ./gradlew ship; fi
 dist: precise
+jobs:
+  include:
+    - stage: 'Integration tests'
+      env: SDK=android
+      language: python
+      before_install: skip
+      install:
+        - "pip install awscli"
+      before_script:
+        - "aws s3 cp s3://optimizely-travisci-artifacts/ci/trigger_fullstack-sdk-compat.sh ci/ && chmod u+x ci/trigger_fullstack-sdk-compat.sh"
+      script:
+        - "ci/trigger_fullstack-sdk-compat.sh test mnoman/androidTravisBuild"
+      after_success: skip
