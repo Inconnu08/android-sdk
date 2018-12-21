@@ -46,7 +46,7 @@ dependencies {
     implementation 'com.android.support:design:24.2.1'
     // EXAMPLE REPLACE noveogroup android-looger with slf4j-android logger
     // https://mvnrepository.com/artifact/org.slf4j/slf4j-android
-    compile group: 'org.slf4j', name: 'slf4j-android', version: '1.7.25'
+    api group: 'org.slf4j', name: 'slf4j-android', version: '1.7.25'
     // EXAMPLE REPLACE gson json parsing with jackson-databind json parsing.
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.6'
 

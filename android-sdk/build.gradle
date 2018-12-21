@@ -65,22 +65,22 @@ dependencies {
     compile ("com.optimizely.ab:core-api:$java_core_ver") {
         exclude group: 'com.google.code.findbugs'
     }
-    implementation "com.android.support:support-annotations:$support_annotations_ver"
+    compile "com.android.support:support-annotations:$support_annotations_ver"
 
-    testImplementation "junit:junit:$junit_ver"
-    testImplementation "org.mockito:mockito-core:$mockito_ver"
-    testImplementation "com.noveogroup.android:android-logger:$android_logger_ver"
+    testCompile "junit:junit:$junit_ver"
+    testCompile "org.mockito:mockito-core:$mockito_ver"
+    testCompile "com.noveogroup.android:android-logger:$android_logger_ver"
 
-    androidTestImplementation "com.android.support.test:runner:$support_test_runner_ver"
+    androidTestCompile "com.android.support.test:runner:$support_test_runner_ver"
     // Set this dependency to use JUnit 4 rules
-    androidTestImplementation "com.android.support.test:rules:$support_test_runner_ver"
+    androidTestCompile "com.android.support.test:rules:$support_test_runner_ver"
     // Set this dependency to build and run Espresso tests
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso_ver"
-    androidTestImplementation "org.mockito:mockito-core:$mockito_ver"
-    androidTestImplementation "com.google.dexmaker:dexmaker:$dexmaker_ver"
-    androidTestImplementation "com.google.dexmaker:dexmaker-mockito:$dexmaker_ver"
-    androidTestImplementation "com.noveogroup.android:android-logger:$android_logger_ver"
-    androidTestImplementation "com.google.code.gson:gson:$gson_ver"
+    androidTestCompile "com.android.support.test.espresso:espresso-core:$espresso_ver"
+    androidTestCompile "org.mockito:mockito-core:$mockito_ver"
+    androidTestCompile "com.google.dexmaker:dexmaker:$dexmaker_ver"
+    androidTestCompile "com.google.dexmaker:dexmaker-mockito:$dexmaker_ver"
+    androidTestCompile "com.noveogroup.android:android-logger:$android_logger_ver"
+    androidTestCompile "com.google.code.gson:gson:$gson_ver"
 }
 
 uploadArchives {
@@ -104,6 +104,7 @@ android.libraryVariants.all { variant ->
 
         options.links("http://docs.oracle.com/javase/7/docs/api/");
         options.linksOffline("http://d.android.com/reference", "${android.sdkDirectory}/docs/reference");
+        ext.androidJar = "${android.sdkDirectory}/platforms/${android.compileSdkVersion}/android.jar"
 
         // First add all of your dependencies to the classpath, then add the android jars
         doFirst { classpath = files(variant.javaCompile.classpath.files) + files(ext.androidJar) }
